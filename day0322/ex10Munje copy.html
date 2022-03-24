@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <style>
+        body * {
+            font-size: 1.4em;
+            font-family: 'Gamja Flower';
+        }
+        div.a{
+            padding: 50px 30px;
+            width: 600px;
+            height: 280px;
+            background-color: white;
+        }
+
+        button{
+            line-height: 50px;
+            font-family: 'Gamja Flower';
+            font-size: 1.1em;
+            background-color: rgb(rgb(109, 110, 106),);
+            color: black;
+            border: 2px solid black;
+            border-radius: 50px;
+        }
+
+        button:hover{
+            background-color: black;
+            color: white;
+            border: 3px solid gray;
+        }
+
+        #result{
+            border: 2px solid black;
+            height: 270px;
+            position: absolute;
+            top: 100;
+            left: 330px;
+            border-radius: 10px;
+            background-color: white;
+            text-align: center;
+            padding-top: 30px;
+
+        }
+
+        input{
+            border-radius: 10px;
+            border: 1.5px solid black;
+            height: 25px;
+            text-align: center;
+        }
+
+    </style>
+
+<script>
+    window.onload=function(){
+        var name=document.getElementById("txtname");
+        var Java=document.getElementById("txtJava");
+        var HTML=document.getElementById("txtHTML");
+        var r=document.getElementById("result");
+
+        //버튼 이벤트
+        document.getElementById("btn1").onclick=function(){
+
+            if(name.value==''){
+                alert("이름을 먼저 입력해주세요"); //경고창
+                name.focus();
+                retrun; //현재함수 종료
+            }
+
+            if(Java.value==''){
+                alert("점수를 먼저 입력해주세요"); //경고창
+                Java.focus();
+                retrun; //현재함수 종료
+            }
+
+            if(HTML.value==''){
+                alert("점수를 먼저 입력해주세요"); //경고창
+                HTML.focus();
+                retrun; //현재함수 종료
+            }
+
+            var sum = parseInt(Java.value)+parseInt(HTML.value); 
+            var avg = sum/2;
+            avg= parseFloat(avg);
+
+            //출력문 
+            r.innerHTML="이름 : "+name.value+"<br>자바 : "+Java.value+"점<br>HTML : "+HTML.value+"점";
+            r.innerHTML+="<span style='color:red';>&nbsp; <br>총점 : "+sum+ "점</span>";
+            r.innerHTML+="<span style='color:red';>&nbsp; <br>평균 : "+avg+ "점</span>";
+        }
+    }
+    
+</script>
+</head>
+<body>
+    <div class ="a" style="border: 2px solid black;">
+        <div id="result" style="width: 300px;"></div>
+    <b>&nbsp;이름 &nbsp;</b>
+    <input type="text" id="txtname" style="width: 140px;">
+    <br><br>
+    <b>&nbsp;자바 &nbsp;</b>
+    <input type="text" id="txtJava" style="width: 140px;">
+    <br><br>
+    <b> HTML&nbsp;</b>
+    <input type="text" id="txtHTML" style="width: 140px;">
+    <br><br><br>
+    <button type="button" id="btn1" style="width: 230px; height:50px;"><b>결&nbsp;&nbsp;&nbsp;과</b></b></button>
+    </div>
+    
+</body>
+</html>

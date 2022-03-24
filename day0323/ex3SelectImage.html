@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        body * {
+            font-size: 1.1em;
+            font-family: 'Jua';
+        }
+
+        #myimg{
+            position: absolute;
+            left: 450px;
+            top: 100px;
+            max-width: 400px;
+            border: 5px groove orange;
+        }
+    </style>
+
+    <script>
+        window.onload=function(){
+            var sel = document.getElementById("selimage");
+            console.log(sel.value); //초기 이미지값 넣기
+
+            //선택된 이미지를 img에 넣기
+            var myimg = document.getElementById("myimg");
+            myimg.setAttribute("src",this.value);
+
+            //이벤트
+            sel.onchange=function(){
+                myimg.setAttribute("src", this.value);
+            }
+        }
+    </script>
+
+</head>
+<body>
+    <div style="margin: 100px 100px;">
+        <select id="selimage" style="width: 200px;"> <!--옵션 박스 설정-->
+            <option value="../연예인사진/12.jpg">박보영</option>  
+            <option value="../음식이미지/감자볼.jpg">감자볼</option>
+            <option value="../음식이미지/치즈샌드위치.jpg">치즈샌드위치</option>
+            <option value="../mainImage/K-052.png">커피잔</option>
+            <option value="../mainImage/K-035.png" selected>브런치</option>  <!--기본값 설정:seleted-->
+        </select>
+    </div>
+
+    <img src="" id="myimg">
+</body>
+</html>

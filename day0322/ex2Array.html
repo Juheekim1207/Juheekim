@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img.photo{
+            max-width: 170px; /*170이 넘는 경우에는 줄이겠다.*/
+            border: 2px solid pink;
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+ <h2>자바스크립트에서의 배열공부하기</h2>
+ <script>
+     var flowers = ["장미꽃","안개꽃","국화꽃","다알리아","프리지아"]; //배열선언
+     var colors = new Array("red","blue","green","pink","orange");
+     console.log(flowers.length); //크롬 콘솔에서 확인 가능
+     console.log(colors.length);
+
+     var s = "";
+     for(i=0; i<flowers.length; i++){
+         s += "<h3 style = 'background-color:" + colors[i] + "; width:300px'>" + flowers[i] + "</h3>";
+     }
+     document.write(s);
+ </script>
+
+ <script>
+     var imgarr = new Array(5); //for문으로 돌릴 수 없는 상황일 떄 
+     imgarr[0] = "../img/ani12.gif";
+     imgarr[1] = "../mainImage/K-043.png";
+     imgarr[2] = "../음식이미지/갈비립.jpg";
+     imgarr[3] = "../음식이미지/알밥.jpg";
+     imgarr[4] = "../snoopyAvata/s5.JPG";
+     for(i=0; i<imgarr.length; i++){
+        document.write("<img src=" + imgarr[i] + " class = photo'>");
+     }
+ </script>
+ <h2>img 태그에 직접 이미지 넣기</h2>
+ <img src="" name="myimg" width="100">
+ <img src="" name="myimg" width="100">
+ <script>
+     myimg[0].src = imgarr[2]; //같은 이름은 배열로 인식 
+     myimg[1].src = imgarr[4];
+ </script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        #msg{ /* # = id */
+            width: 700px;
+            font-size: 2em;
+            text-align: center;
+            font-family: 'Jua';
+            border: 2px solid orange;
+            height: 60px;
+            line-height: 60px;
+            margin-bottom: 30px;
+        }
+        button{
+            width: 150px;
+            height: 40px;
+            line-height: 40px;
+            font-family: 'Jua';
+            font-size: 1.2em;
+            background-color: pink;
+            color: blue;
+        }
+        button.hover{
+            box-shadow: 5px 5px 5px gray;
+        }
+    </style>
+
+    <script>
+        window.onload=function(){
+        document.getElementById("btn2").onclick=function(){
+            m.innerHTML="<b style='color:magenta;'>head안에 이벤트를 만들었어요!</b>";
+        }
+    }
+    </script>
+</head> 
+<body>
+    <div id = "msg">Have a Nice Day!!!</div>
+
+    <button type = "button" onclick="hello()">직접함수호출 #1</button>
+    <button type = "button" onclick="hello2('다들 안녕!!')">직접함수호출 #2</button>
+    <button type = "button" id="btn1">이벤트 생성 #1</button>
+    <button type = "button" id="btn2">이벤트 생성 #2</button>
+
+    <script>
+        var m = document.getElementById("msg");
+
+        //일반 사용자 함수 
+        function hello(){
+            m.innerText = "<b>첫번째 버튼에서 호출했어요!</b>"; //태그도 그대로 출력됨 
+        }
+
+        function hello2(str){
+            m.innerHTML = "<b>"+str+"</b>"; //html태그가 적용됨 
+        }
+
+        //id에 이벤트 주기
+        doucument.getElementById("btn1").onclick=function(){
+            m.innerHTML="<span style = 'color:green;'> 직접 이벤트를 만들었어요!!</span>";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <style>
+        span.day{
+            font-size: 2em;
+            font-family: 'Gamja Flower';
+            color: red;
+        }
+        div.time{
+            position: absolute;
+            left: 200px;
+            top: 300px;
+            font-size: 40px;
+            font-family: 'Jua';
+            border: 10px groove gold;
+            text-align: center;
+            width: 500px;
+            height: 100px;
+            line-height: 100px;
+            box-shadow: 8px 8px 5px gray;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        //현재 날짜와 시간 출력 
+        var date = new Date();
+        //date.getMonth()는 0~11의 값을 가지고 있다. 
+        var day = "<span class='day'>현재 날짜:"+date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate()+"</span>";
+        //브라우저 바로 출력
+        document.write(day); //세미콜론을 해도 안해도 상관없다. 안쓰면 에러나는 경우도 있음 
+    </script>
+    <hr align="left" width="500" size="5" color="magenta">
+    <span class="day">
+        현 재 시간 : 
+        <script>
+            var s = date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+            document.write(s);
+        </script>
+    </span> 
+    <div class="time" id="time"> <!--id는 고유값으로 1개밖에 못쓴다.-->
+        <script>
+            //1초마다 반복해서 함수 실행 
+            setInterval(function(){
+                var date2 = new Date();
+                var s2 = date2.getHours()+":"+date2.getMinutes()+":"+date2.getSeconds();
+                document.getElementById("time").innerHTML=s2;
+            },1000);//1000이 1초임, 1초마다 function 안의 코드 실행
+        </script>
+    </div>
+</body>
+</html>

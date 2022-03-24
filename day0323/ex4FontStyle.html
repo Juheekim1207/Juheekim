@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <script>
+        var info; //지역변수로 만들고자할때
+        window.onload=function(){
+            m = document.getElementById("msg"); 
+            info = document.getElementById("info"); //전역변수로 만들고자할때 : var 제외
+            n = 20;
+            fn = "Gamja Flower"; //font
+            tcolor = "#2e8b57"; //text color
+            m.style.fontSize = n + "px";
+            m.style.fontFamily = fn; 
+            m.style.color = tcolor;
+
+            writeInfo(); //초기값 출력
+
+            //버튼 이벤트
+            document.getElementById("btn1").onclick=function(){
+            
+                if(n <= 5){
+                    n = 5;
+                    writeInfo();
+                    alert("더이상은 작게 못합니다!");
+                    return;
+                }
+                n -= 3;
+
+                writeInfo();
+                m.style.fontSize = n + "px";
+            }
+
+            document.getElementById("btn2").onclick=function(){
+                n += 3;
+                if(n > 70){
+                    n = 70;
+                    writeInfo();
+                    alert("더이상은 크게 못합니다!");
+                    return;
+                }
+
+                writeInfo();
+                m.style.fontSize = n + "px";
+            }
+
+            //굵게 체크박스 이벤트
+            document.getElementById("chkbold").onclick=function(e){
+                //alert(this.checked+","+e.target.checked);//둘다 됨 체크 상태가 true/false 반환
+                if(this.checked)
+                    m.style.fontWeight="bold";
+                else
+                    m.style.fontWeight="normal";
+                
+        }
+
+            //글자색 이벤트
+
+            document.getElementById("tcolor").onchange=function(){
+                //alert(this.value); 
+
+                //해당 색의 변수 넣기
+                tcolor = this.value;
+                m.style.color = tcolor;
+                writeInfo();
+
+                /*
+                var ch = document.getElementById("ch");
+
+                //정보 바꾸기
+                ch.setAttribute("value", this.value);
+
+                //출력
+                m.style["tcolor"] = ch.value;
+                m.onchange=function(){
+                ch.setAttribute("value", this.value);
+                    */
+                }
+
+            }
+
+
+
+        //사용자 함수 
+        function writeInfo(){
+            info.innerHTML = "글꼴크기 : " + n + "px, 글꼴 : " 
+                + fn + ", 글자색 : " + tcolor + "<b>";
+        }
+
+    </script>
+</head>
+<body>
+    <button type="button" id="btn1">점점작게</button>   
+    <button type="button" id="btn2">점점크게</button>
+
+    <input type="checkbox" id="chkbold">굵게
+
+    <input type="color" id="tcolor" value="#2e8b57">글자색 변경
+
+
+    <br>
+    <div id="info"></div>
+    <hr>
+    <div id="msg">
+        오늘은 즐거운 수요일입니다
+    </div>
+</body>
+</html>

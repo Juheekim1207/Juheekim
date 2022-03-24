@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <style>
+        body *{ /*body의 모든 하위 태그들*/
+            font-size: 1.4em;
+            font-family: 'Jua';
+        }
+    </style>
+</head>
+<body>
+    <h2>통장번호를 입력하세요</h2>
+    <input type="text" id="txtinp1">
+    <hr> <!--선 출력-->
+    <b> keyUp 이벤트 : </b>
+    <span id="msg1"></span>
+    <br><br>
+    <b> keyPress 이벤트 : </b> 
+    <span id="msg2"></span>
+
+    <script>
+        document.getElementById("txtinp1").onkeyup=function(e){ //입력하는 숫자(문자)가 바로 나타남
+            //.log(this.value);
+            console.log(e.target.value);
+            document.getElementById("msg1").innerHTML=this.value;
+        }
+
+        document.getElementById("txtinp1").onkeypress=function(e){ //입력하고 있는 숫자(문자)는 나타나지 않음 (마지막 글자)
+            document.getElementById("msg2").innerHTML=this.value;
+        }
+    </script>
+</body>
+</html>

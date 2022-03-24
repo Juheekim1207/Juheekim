@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <style>
+        body * {
+            font-size: 1.1em;
+            font-family: 'Gamja Flower';
+        }
+        div.left{
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 300px;
+            height: 230px;
+            border: 1px solid black;
+            padding: 20px 20px;
+        }
+        div.right{
+            position: absolute;
+            left: 450px;
+            top: 100px;
+            width: 300px;
+            height: 230px;
+            border: 1px solid black;
+            padding: 20px 20px;
+        }
+
+    </style>
+
+<script>
+    window.onload=function(){
+        var out = document.getElementById("right");
+
+        //버튼 이벤트
+        document.getElementById("btn1").onclick=function(){
+            //이름
+            var name = document.getElementById("name");
+            //2과목 점수
+            var java = document.getElementById("java");
+            var html = document.getElementById("html");
+            //총점
+            var sum = parseInt(java.value)+parseInt(html.value); //문자열 형태의 수식을 계산해준다.
+            var sum2 = eval(java.value+"+"+html.value); 
+            console.log(sum,sum2);
+            //평균
+            var avg = sum/2;
+
+            var s = "이름 : " + name.value + "<br>";
+            s += "자바점수 : " + java.value + "점<br>";
+            s += "HTML점수 : " + html.value + "점<br>";
+            s += "합 계 : " + sum + "점<br>";
+            s += "평 균: " + avg + "점<br>";
+
+            out.innerHTML = s;
+
+        }
+    }
+</script>
+</head>
+<body>
+    <div class ="left">
+    <b>이름</b>
+    <input type="text" id="name" style="width: 100px;">
+    <br><br>
+    <b>자바</b>
+    <input type="text" id="java" style="width: 100px;">
+    <br><br>
+    <b>HTML</b>
+    <input type="text" id="html" style="width: 100px;">
+    <br><br><br>
+    <button type="button" id="btn1">결 과</button>
+    </div>
+    
+    <div class ="right" id="right"> <!--id와 class는 이름이 같아도 상관없다.-->
+    </div>
+        
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <style>
+        div.a>a:link{ /*a태그 기본 링크에 적용*/
+            text-decoration: none;
+            color: black;
+            font-size: 20px;
+        }
+        div.a>a:visited{ /*클릭했던 a태그 적용*/
+            text-decoration: none;
+            color: gray;
+            font-size: 20px;
+        }
+        div.a>a:hover{ /*마우스를 올렸을 때 적용*/
+            text-decoration: underline;
+            color: red;
+            font-size: 20px;
+        }
+        div.b>a{
+            font-family: "Jua";
+            font-size: 2em;
+            text-decoration: none;
+            color: black ;
+        }
+        div.b>a:hover{
+            color: red;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <a href="http://naver.com">네이버 현재창</a><br>
+        <a href="http://naver.com" target="_blank">네이버 새창</a><br> <!--target="_blank": 새창으로 열기-->
+        <a href="http://nate.com">네이트 현재창</a><br>
+        <a href="http://nate.com" target="_blank">네이트 새창</a>
+    </div>
+    <div class="b">
+        <a href="../day0318/ex1tag.html">3/18 예제1</a><br>
+        <a href="../day0318/ex2.lottodesign.html">3/18 예제2</a><br>
+        <a href="../day0321/ex1Tag.html">3/21 예제1</a><br>
+        <a href="../day0321/ex2Image.html">3/21 예제2</a><br>
+        <a href="../day0321/ex3Figure.html">3/21 예제3</a><br>
+    </div>
+
+    <a href="http://cafe.naver.com/zipsy">
+    <img src="../div_img/oneday01.jpg" 
+    style="width: 300px;" border="1"
+    title="이문희의 프로그래밍"
+    onmouseover="this.border=10"
+    onmouseout="this.border=1"
+    >
+    </a>    
+
+    <a href="http://www.nwver.com">
+    <img src="../div_img/beauty1.jpg" width="100px"
+    style="border: 1px red solid;">
+    </a>
+</body>
+</html> 
