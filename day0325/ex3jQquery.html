@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body * {
+            font-size: 1.2rem;
+            font-family: 'Jua';
+        }  
+    </style>
+
+    <script>
+        $(function(){
+            //처음 load시 호출되는 함수 (window.onload)
+            //document.ready(function(){}) : 이렇게 써도됨
+            //alert("처음입니다");
+            $("div.apple").css("color", "red");
+
+            $("div.apple>div.banana").css("font-size", "25px"); //빈칸이면 하위 모든 태그, <이면 바로 하위태그 적용  
+
+            $(".banana").css("border","3px dotted green"); //banana 3개에 모두 적용
+
+            //방법 1 : 3개의 스타일 적용시 이어붙여도 된다
+            $("div#kiwi").css("color","tomato").css("font-size","3em")
+            .css("background-color","#ffc"); 
+
+            //방법 2 : 여러개의 스타일 변경시 
+            $("span.banana").css({
+                "color" : "gray",
+                "border" : "5px inset yellow",
+                "font-size" : "4em",
+                "background-color" : "cyan"
+            });
+
+            //span.banana의 배경색을 얻어서 b.apple에 적용해보자
+            $("b.apple").css("background-color",$("span.banana").css("background-color"));
+
+            //kiwi의 글자색을 얻어서 #orange에 적용 
+            $("#orange").css("color",$("#kiwi").css("color"));
+
+            //myimg1의 src넣기
+            $("#img1").attr("src","../img/ani12.gif");
+
+            //모든 img태그에 이미지 넣기
+            //$("img").attr("src","../연예인사진/12.jpg");
+
+            //img태그 중 class명이 myimg인 경우 (여러개의 속성 변경시)
+            $("img.myimg").attr({
+                "src" : "../img/ani12.gif",
+                "width" : "200",
+                "height" : "240",
+                "border" : "2"
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+    <!--jquery 교재 452p~
+    jQuery는 일종의 자바스크립트 라이브러리이다.
+    제이쿼리를 사용하면 자바스크립트 코드를 상당히 줄일 수 있다
+    jquery.com
+
+    css함수 : style 변경(인자가 1개일땐 css값 반환)
+    attr함수 : 속성 변경(인자가 1개일땐 attr값 반환)
+
+    -->
+
+    <div class ="apple">
+        Div apple class
+        <div class="banana">
+            Div apple 안에 banana Class
+        </div>
+    </div>
+
+    <b class="apple">B tag apple Class</b><br>
+    <b id ="orange">B Tag id가 orange</b><br>
+    <span class="banana">Span Tag Banana Class</span><br>
+    <div id="kiwi">
+        Div가 kiwi
+    </div>
+    <span class="apple banana">
+        Span Tag class가 2개 
+    </span>
+    <br><br>
+    <img src="" id="img1">
+    <img src="" class="myimg">
+    <img src="" class="myimg">
+    <img src="" class="myimg">
+
+</body>
+</html>
