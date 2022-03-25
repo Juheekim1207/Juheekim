@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Pen+Script&display=swap"
+        rel="stylesheet">
+</head>
+
+<style>
+    body * {
+        font-family: 'Jua';
+        font-size: 1.3em;
+    }
+
+    div.select {
+        margin-top: 30px;
+        margin-left: 30px;
+    }
+
+    div#calendar {
+        margin-top: 50px;
+        margin-left: 20px;
+    }
+
+    table {
+        width: 700px;
+        border: 5px solid gray;
+        border-collapse: collapse;
+    }
+
+    table thead tr {
+        height: 10px;
+        background-color: #ffe4e1;
+
+
+    }
+
+    table tbody tr {
+        height: 60px;
+    }
+
+    table tbody tr td {
+
+        border: 1px solid #ccc;
+        text-align: right;
+        padding-right: 5px;
+        font-size: 25px;
+        font-weight: bold;
+
+    }
+
+    table caption {
+        font-size: 30px;
+        font-weight: bold;
+        font-family: 'Nanum Pen Script';
+    }
+</style>
+
+
+<script>
+    var currYear, currMonth;
+    window.onload = function () {
+        currYear = y;
+        currMonth = m;
+        writeCalendar();
+
+        document.getElementById("selyear").onchange = function () {
+            currYear = parseInt(this.value);
+            writeCalendar();
+        }
+
+        document.getElementById("selmonth").onchange = function () {
+            currMonth = parseInt(this.value);
+            writeCalendar();
+        }
+    }
+
+    //사용자 함수
+    function writeCalendar() {
+        console.log(date);
+        var date2 = new Date(currYear, currMonth - 1, 1)//현재 년, 월의 1일의 요일 알아내기
+        var week = date2.getDay(); //일=0 월:1 토:6
+
+
+        //결과 값에 대한 설명은 이해를 돕기 위해 2022년 3월 24일을 기준으로 합니다.
+        var prevMonth = new Date(currYear, currMonth - 1, 1);//현재 년, 월의 1일 날짜 -> 결과: 2022 03 01
+        prevMonth.setDate(prevMonth.getDate() - 1);// (현재 Month의 첫날) 빼기 1 == (이전 Month의 마지막날) -> 결과: 2022 02 28
+        var dayOfPrevMonth = prevMonth.getDay(); // 2022 02 28의 요일 구하기 -> 결과: 1(월요일)
+
+
+        var endDay;
+        switch (currMonth) {
+            case 2: //2월은 윤년 계산
+                if (currYear % 4 == 0 && currYear % 100 != 0 || currYear % 400 == 0)
+                    endDay = 29;
+                else
+                    endDay = 28;
+                break;
+            case 4: case 6: case 9: case 11: //46911 은 끝날이 30일
+                endDay = 30;
+                break;
+            default: // 그 외에는 31일
+                endDay = 31;
+        }
+
+        //스위치 문들 통해서 마지막날을 먼저 구한 후에 날짜를 저장한다. --> 결과: 2022 03 31
+        var lastDateOfCurrMonth = new Date(currYear, currMonth - 1, endDay)
+
+
+
+        console.log(endDay);
+
+        var s = "<table>";
+        s += "<caption>" + currYear + "년 " + currMonth + "월</caption>";
+        s += "<thead><tr>";
+        s += "<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>"
+        s += "</tr></thead>"
+        s += "<tr>";
+
+        //마지막 28일 - 1(월요일) = 27일 --> 27일(일요일)부터 출력
+        var startOfPrevMonth = prevMonth.getDate() - dayOfPrevMonth;
+
+        //반복횟수 설정. 2월 28일은 월요일이니까 일부터 월요일까지 2번만 반복해야된다.
+        //dayOfPrevMonth==1
+        for (i = 0; i <= dayOfPrevMonth; i++) {
+            //첫 날이 일요일이라면 실행할 필요가 없다. (예. 2022 5월)
+            if (week != 0) {
+                s += "<td style='color:#d7d7d7' valign='middle'>" + (startOfPrevMonth++) + "</td>";
+            }
+        }
+        console.log("week======="+week);
+
+        for (i = 1; i <= endDay; i++) {
+            week++;
+            s += "<td valign='middle'>" + i + "</td>";
+            if (week % 7 == 0) {
+                s += "</tr>";
+            }
+        }
+        console.log("week======="+lastDateOfCurrMonth.getDay());
+
+
+        //다음 달의 날을 어디까지 출력할지 결정한다.
+        //2022 03 31일은 목요일(4)이니, 금토 2번 반복하면된다.
+        //(6 - lastDateOfCurrMonth.getDay() 풀어서 쓰면 6-4 = 2  --> 2번 반복한다.
+        for (i = 1; i <= (6 - lastDateOfCurrMonth.getDay()); i++) {
+                s += "<td style='color:#d7d7d7' valign='middle'>" + (i) + "</td>";
+        }
+
+        s += "</table>";
+        document.getElementById("calendar").innerHTML = s;
+    }
+
+</script>
+
+<body>
+    <div class="select">
+        <b>년도 선택 : </b>
+        <select id="selyear" style="width: 130px;">
+            <script>
+                var date = new Date();
+                var y = date.getFullYear();
+
+                for (i = y; i >= 1950; i--) {
+                    document.write("<option>" + i + "</option>");
+                }
+            </script>
+        </select>
+        <b>월 선택 : </b>
+        <select id="selmonth" style="width: 100px;">
+            <script>
+                var m = date.getMonth() + 1;
+                for (i = 1; i <= 12; i++) {
+                    if (i == m) {
+                        document.write("<option selected>" + i + "</option>");
+                    } else {
+                        document.write("<option>" + i + "</option>");
+                    }
+                }
+            </script>
+        </select>
+    </div>
+    <div id="calendar">
+        111111
+    </div>
+</body>
+
+</html>

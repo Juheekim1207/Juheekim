@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        body * {
+            font-size: 1.5em;
+            font-family: 'Jua';
+        }
+    
+    </style>
+</head>
+
+<body>
+    <!--교재 424P-->
+    <canvas id = "myCanvas" width="600" height="500" style="border: 1px solid gray;"></canvas>
+    
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var context = canvas.getContext('2d');
+        context.strokeStyle="magenta"; //선색 
+        context.lineWidth = 5; //선 굵기
+        context.beginPath(); //선을 그리기 시작
+        context.moveTo(0,0); //선을 그릴 위치로 이동
+        context.lineTo(100,100); //선
+        context.lineTo(150,50); //선
+        context.lineTo(200,100);
+        context.stroke(); //끝나면서 선이 그려짐 
+
+        context.beginPath();
+        context.strokeStyle="green"; //선색 
+        context.rect(10,130,100,100);
+        context.stroke(); //끝나면서 선이 그려짐 
+
+        context.strokeStyle="orange"; //선색 
+        context.fillStyle="pink";
+        context.linewidth = 2;
+
+        context.strokeRect(200,100,100,100);
+        context.fillRect(330,100,100,100);
+
+        //캔바스에 이미지 넣기
+        var image = new Image();
+        image.src = "../jquery_image/08.png";
+        image.onload = function(){
+            context.drawImage(image, 100, 200);
+
+        //글자 넣기
+        context.lineWidth = 1;
+        context.strokeStyle = "black";
+        context.fillStyle = "orange";
+        context.font = "30px Jua"; //글꼴 지정 
+        context.shadowOffsetX = 5;
+        context.shadowOffsetY = 5;
+        context.shadowBlur = 2;
+        context.shadowColor = "gray";
+        context.fillText("Have a Nice Day",200,30);
+        context.strokeText("HTML5", 300, 250);
+        }
+    </script>
+</body>
+</html>

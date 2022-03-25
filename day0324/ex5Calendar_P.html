@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        body * {
+            font-size: 1.2rem;
+            font-family: 'Jua';
+        }  
+        div.select{
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+        #calendar{
+            margin-top: 50px;
+            margin-left: 20px;
+        }
+        table{
+                width: 700px;
+                border: 5px solid gray;
+                border-collapse: collapse;
+        }
+        table thead tr{
+            height: 40px;
+            background-color: #ffe4e1;
+        }
+        table tbody tr{
+            height: 60px;
+        }
+        table thead tr th{
+            border: 1px solid #ccc;
+            border-bottom: 5px double #999;
+        }
+        table tbody tr td{
+            border: 1px solid #ccc;
+            text-align: right;
+            padding-right: 5px;
+            font-size: 25px;
+            font-weight: bold;
+        }
+        table.caption{
+            font-size: 30px;
+            font-weight: bold;
+            font-family: 'Nanum Brush Script';
+        }
+    </style>
+
+    <script>
+        var currYear, currMonth;
+        window.onload = function(){
+
+            currYear = y;
+            currMonth = m;
+            writeCalendar();
+
+             //년도 변경시 달력 다시 그리기
+             document.getElementById("selyear").onchange = function(){
+                //선택한 년도를 currYear에 저장
+                currYear = parseInt(this.value);
+                //달력을 다시 그린다
+                writeCalendar();
+             }
+             //월 변경시 달력 다시 그리기
+             document.getElementById("selmonth").onchange = function(){
+                //선택한 월 currMonth에 저장
+                currMonth = parseInt(this.value);
+                //달력을 다시 그린다
+                writeCalendar();
+            }
+
+        }   
+
+        function writeCalendar(){
+            console.log(date);
+
+            //현재 년도, 월의 1일이 무슨 요일인지 알아내기
+            var date2 = new Date(currYear, currMonth-1, 1);
+            var week = date2.getDay();
+            console.log(week); // 2 = 화요일이 1일 
+
+            //해당 년도, 월이 몇일까지 있는지 알아야한다
+            var endday;
+            console.log(currYear, currMonth);
+            switch(currMonth){
+                case 2 :
+                    //윤년 공식 (2월)
+                    if(currYear % 4 ==0 && currYear % 100 != 0 || currYear % 400 ==0){
+                        endday = 29;
+                    }else{
+                        endday = 28;
+                    }
+                case 4 : case 6 : case 9 : case 11 :  // 4,6,9,11은 끝날이 30일
+                        endday = 30;
+                default : //그외에는 31일
+                        endday = 31;
+            }
+            //스위치 문을 통해서 마지막날을 먼저 구한 후에 날짜를 지정한다 -> 결과 : 2022 03 31
+            var lastDateOfCurrMonth = new Date(currYear, currMonth-1, endday)
+
+            console.log(endday);
+
+            var s = "<table>";
+                s += "<caption>" + currYear + "년" + currMonth + "월</caption>"
+                s += "<thead><tr>";
+                s += "<th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>";
+                s += "</tr></thead>";
+
+
+
+                
+
+                //week(요일수)의 갯수만큼 빈칸 그리기 
+                for(i=1; i<=week; i++){  //getDay는 7개 요소 > week = 7;
+                    s += "<td></td>";
+                }
+
+                //1일부터 endday까지 반복해서 출력
+                for(i=1; i<=endday; i++){
+                    week++;
+                    s += "<td valign = 'middle'>" + i  + "</td>";
+                    if(week % 7 == 0){
+                        s += "</tr><tr>"
+                    }
+                }
+
+                //나머지 빈칸 마저 그려주기
+                while(true){
+                    week++;
+                    s += "<td></td>"
+                    if(week % 7 == 0)
+                    break;                   
+                }
+
+                s += "</tr>";
+                s += "</table>";
+                document.getElementById("calendar").innerHTML = s;
+        }
+</script>
+</head>
+
+<body>
+    <div class="select">
+        <b>년도 선택</b>&nbsp;&nbsp;
+        <select id="selyear" style="width: 150px;">
+            <script>
+                var date = new Date();
+                var y = date.getFullYear();
+
+                for(i=y; i>=1950; i--){
+                    if(i == y){
+                        document.write("<option selected>" + i + "</option>")
+                    }else{
+                        document.write("<option>" + i + "</option>")
+                    }
+                }
+            </script>
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <b>월 선택</b>&nbsp;&nbsp;
+        <select id="selmonth" style="width: 150px;">
+            <script>
+                var m = date.getMonth()+1; //0부터 배열이 시작되기 때문에 +1을 꼭 해주어야 함 
+
+                for(i=1; i<=12; i++){
+                    if(i == m){
+                        document.write("<option selected>" + i + "</option>")
+                    }else{
+                        document.write("<option>" + i + "</option>");
+                    }
+                }    
+            </script>
+        </select>
+    </div>
+
+    <div id="calendar">
+        
+    </div>
+</body>
+</html>

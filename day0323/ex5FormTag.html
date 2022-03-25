@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        body * {
+            font-size: 1.1em;
+            font-family: 'Jua';
+        }
+        #msg {
+            position: absolute;
+            left: 200px;
+            top: 100px;
+            width: 500px;
+            height: 150px;
+            border: 5px inset pink;
+            font-size: 30px;
+            padding: 50px;
+            padding-top: 100px;
+            text-align: center;
+        }
+        div.info{
+            position: absolute;
+            left: 200px;
+            top: 450px;
+        }
+    </style>
+</head>
+<body>
+    <div id="msg">
+        Have a Nice Day!! <br>
+        행복한 하루되세요!!
+    </div>
+
+    <div class="info">
+        <h3>배경색을 선택하세요</h3>
+        <input type="radio" name="bcolor" class="bcolor" value="#7fffd4">그린색 <!--그룹으로 만들기 위해서 name 설정-->
+        <input type="radio" name="bcolor" class="bcolor" value="#ffb6c1">핑크색
+        <input type="radio" name="bcolor" class="bcolor" value="#48d1cc">하늘색
+        <input type="radio" name="bcolor" class="bcolor" value="#ffffff" checked>흰색 <!--기본 선택 : checked-->
+        <br><br>
+        <h3>글꼴을 선택하세요</h3>
+        <input type="radio" name="font" class="font" value="Jua" checked>Jua
+        <input type="radio" name="font" class="font" value="Gamja Flower">Gamja
+        <input type="radio" name="font" class="font" value="Lobster">Lobster
+        <input type="radio" name="font" class="font" value="Nanum Brush Script">Nanum Brush Script
+        <br><br>
+        <b>테두리선 선택 : </b>
+        <select id="selline">
+            <option>solid</option>
+            <option selected>inset</option>
+            <option>dotted</option>
+            <option>dashed</option>
+            <option>double</option>
+            <option>groove</option>
+        </select>
+        <br><br>
+        <button type="button" id="btn1"
+        style="width: 200px; height: 50px; margin-left: 150px;">적용하기</button>
+    </div>
+    <script>
+        var m = document.getElementById("msg");
+
+        //버튼 이벤트
+        document.getElementById("btn1").onclick=function(){
+            var bcolor1 = document.getElementsByClassName("bcolor"); //배열 타입 
+            console.log(bcolor1.length); //4
+            var bcolor2 = document.getElementsByTagName("bcolor"); //배열 타입
+            console.log(bcolor2.length); //4 
+
+            var tags = document.getElementsByTagName("input");//모든 input 태그 - 배열 타입 
+            console.log(tags.length); //8
+        
+            //배경색 얻어서 설정하기
+            for(i=0; i<bcolor1.length; i++){
+                console.log(bcolor1[i].value + "," + bcolor1[i].checked);
+                if(bcolor1[i].checked){
+                    m.style.backgroundColor = bcolor1[i].value;
+                }
+            }
+
+            //글꼴얻어서 설정하기
+            var font = document.getElementsByClassName("font");
+            for(i=0; i<font.length; i++){
+                if(font[i].checked){
+                    m.style.fontFamily = font[i].value;
+                }
+            }
+
+            //테두리선 
+            var line = document.getElementById("selline").value;
+            m.style.borderStyle = line;    
+        }
+
+    </script>
+</body>
+</html>

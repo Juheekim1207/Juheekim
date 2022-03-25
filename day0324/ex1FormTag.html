@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        body * {
+            font-family: 'Jua';
+        }
+        table.ta{
+            border: 2px solid gray;
+            border-collapse: collapse;
+        }
+        table.ta th, table.ta td{
+            border: 2px solid #ccc;
+        }
+        table.ta th{ /*제목*/
+            background-color: cadetblue;
+            color: white;
+            height: 30px;
+        }
+        table.ta tr{ /*내용*/
+            height: 40px;
+        }  
+    </style>
+    <script>
+        window.onload = function(){
+            var pro = document.getElementById("pro"); //progress
+            var prov = document.getElementById("provalue"); //b태그
+            //감수성
+            document.getElementById("btnpro").onclick = function(){
+                //1~100사이의 난수 발생
+                var rnd = parseInt(Math.random()*100)+1;
+
+                var n = 0;
+                var interval = setInterval(function(){
+                    n++;
+                    pro.value = n; //프로그래스바에 값 출력 
+                    prov.innerHTML = n;
+                    if(n == rnd){
+                        //interval 멈춤
+                        clearInterval(interval);
+                    }
+                },10); //10이면 0.01초마다 호출
+            }
+
+            //출력
+            var r = document.getElementById("result");
+            //결과버튼이벤트
+            document.getElementById("btnresult").onclick = function(){
+                var s = "<h3 style='margin-left : 50px;'>개인정보</h3><br>";
+                s += "이 름 : " + document.getElementById("txtname").value + "<br>";
+                s += "비 번 : " + document.getElementById("txtpass").value + "<br>";
+            
+                //혈액형
+                var blood = document.getElementsByName("blood");
+                for(i=0; i<blood.length; i++){
+                    if(blood[i].checked) { //체크된 값일때
+                        s += "혈액형 : " + blood[i].value + "형<br>";
+                    }
+                }
+
+                //운전면허
+                var lic = document.getElementById("cblic");
+                s += "운전면허 : ";
+                    if(lic.checked)
+                        s += "있음<br>";
+                    else
+                        s += "없음<br>";
+
+                //취미
+                var hobby = document.getElementsByName("hobby");
+                n = 0;
+                s += "취미 : ";
+                for(i=0; i<hobby.length; i++){
+                    if(hobby[i].checked) { //체크된 값일때
+                        n++;
+                        s += "[" + hobby[i].value + "]&nbsp;";
+                    } 
+                }
+                if(n == 0){ //체크 안되었을때 없음으로 표시 
+                        s += "없음";   
+                }
+                s += "<br>";  
+
+                //생년월일
+                s += "생년월일 : " + document.getElementById("birth").value + "<br>";
+
+                //감수성
+                s += "감수성 : " + document.getElementById("pro").value + "<br>";
+
+
+
+            r.innerHTML = s;
+            }
+}
+    </script>
+</head>
+
+<body>
+    <h3 style="margin-left: 200px;">폼 태그들 연습</h3>
+    <table class="ta">
+        <caption><b>개인정보</b></caption>
+        <tr>
+            <th width="100px">이 름</th>
+            <td width="300px">
+                <input type="text" id="txtname" style="width: 120px;">
+            </td>
+        </tr>
+        <tr>
+            <th>비밀번호</th>
+            <td>
+                <input type="password" id="txtpass" style="width: 120px;"
+                    placeholder="input pass"> <!--placeholder : 공백시 해당 문자 출력-->
+            </td>
+        </tr>
+        <tr>
+            <th>혈액형</th>
+            <td> <!--실제 value값은 "value"에 저장-->
+                <input type="radio" name="blood" value="A">A형&nbsp;&nbsp;
+                <input type="radio" name="blood" value="B" checked>B형&nbsp;&nbsp;
+                <input type="radio" name="blood" value="O">O형&nbsp;&nbsp;
+                <input type="radio" name="blood" value="AB">AB형&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <th>운전면허</th>
+            <td>
+                <input type="checkbox" id="cblic">운전면허
+            </td>
+        </tr>
+        <tr>
+            <th>취미</th>
+            <td>
+                <input type="checkbox" name="hobby" value="게임">게임&nbsp;
+                <input type="checkbox" name="hobby" value="낚시">낚시&nbsp;
+                <input type="checkbox" name="hobby" value="여행">여행&nbsp;
+                <input type="checkbox" name="hobby" value="음악감상">음악감상&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <th>생년월일</th>
+            <td>
+                <input type="date" id="birth" value="2022-01-01"> <!--html5기능 : 달력표시-->
+            </td>
+        </tr>
+        <tr>
+            <th>감수성</th>
+            <td>
+               <progress id="pro" value="0" min="0" max="100"></progress>
+               <button type="button" id="btnpro">확인</button>
+                &nbsp;&nbsp;&nbsp;
+                <b id="provalue">0</b>
+            </td>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <button type="button" style="width: 360px;" id="btnresult">결과 출력</button>
+            </th>
+        </tr>
+    </table>
+    <br><br>
+    <div id="result" style="width: 360px; height: 300px; border: 1px solid gray; padding: 20px 20px;">111</div>
+</body>
+</html>
