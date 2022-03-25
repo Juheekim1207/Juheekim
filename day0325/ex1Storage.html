@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        body * {
+            font-size: 1.2rem;
+            font-family: 'Jua';
+        }  
+    </style>
+</head>
+<body>
+    <!--클라이언트의 디스크에 소량의 데이터를 저장해두기 위한 기억공간 (cookie와 비슷)
+    키/값 쌍으로 자료를 저장하고 키를 이용하여 자료를 조회한다
+    Local Storage : 반영구적 보관, 크기는 약 5MB //페이지가 바뀌더라도 저장 값 유효 
+    Session Storage : 세션이 유효한만큼 보관 //페이지가 바뀌면 지워진다.
+-->
+   <button type="button" id="btnadd">저장</button> 
+   <b>key값(영문):</b><input type="text" id="mykey" style="width: 100px;">
+   &nbsp;&nbsp;&nbsp;
+   <b>저장할 값(영문):</b><input type="text" id="mydata" style="width: 130px;">
+   <br>
+   <button type="button" id="btndel">삭제</button>
+   <button type="button" id="btnalldel">전체삭제</button>
+
+   <button type="button" id="btnview">내용보기</button>
+   <div id="view"></div>
+
+   <script>
+        document.getElementById("btnadd").onclick = function(){
+            //스토리지에 저장하는 방법 3가지
+            //localStorage.setItem("name","이효리"); //방법1 : key값에 value값을 직접 주는 것 
+            //localStorage.age = "23세"; //방법2
+            //localStorage["addr"] = "서울강남"; //방법3
+
+            mykey = document.getElementById("mykey").value;
+            mydata = document.getElementById("mydata").value;
+
+            localStorage.setItem(mykey,mydata); //로컬스토리지에 입력값 저장
+        }
+        document.getElementById("btndel").onclick = function(){
+            //입력한 key값 찾아서 삭제
+            mykey = document.getElementById("mykey").value;
+            localStorage.removeItem(mykey); //로컬스토리지에 입력값 삭제
+           
+        }
+        document.getElementById("btnalldel").onclick = function(){
+            localStorage.clear(); //전체 삭제 
+        }
+        document.getElementById("btnview").onclick = function(){
+           //저장된 localStorage 값 가져오기 (key값은 알아야 함)
+           //가져오는 것도 3가지 방법이 있다
+           var s = "로컬스토리지 값 가져오기<br>";
+        //s += "name:"+localStorage.getItem("name") + "<br>";
+        //s += "name:"+localStorage.age + "<br>";
+        //s += "name:"+localStorage["addr"] + "<br>";
+        //s += "name:"+localStorage.getItem("id") + "<br>";
+        //s += "flower:"+localStorage.flower + "<br>";
+
+        //수정: 자동 검색해서 존재하는 것만 가져오기
+        for(i=0; i<localStorage.length; i++){
+            var k = localStorage.key(i); //입력키 가져오기 
+            s += k + localStorage.getItem(k) + "<br>"; //입력키 + 값가져오기 
+
+        }
+
+           document.getElementById("view").innerHTML = s;
+
+        }
+   </script>
+</body>
+</html>
