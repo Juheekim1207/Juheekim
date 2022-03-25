@@ -38,8 +38,8 @@
             //localStorage.age = "23세"; //방법2
             //localStorage["addr"] = "서울강남"; //방법3
 
-            mykey = document.getElementById("mykey").value;
-            mydata = document.getElementById("mydata").value;
+            var mykey = document.getElementById("mykey").value;
+            var mydata = document.getElementById("mydata").value;
 
             localStorage.setItem(mykey,mydata); //로컬스토리지에 입력값 저장
         }
@@ -64,7 +64,7 @@
 
         //수정: 자동 검색해서 존재하는 것만 가져오기
         for(i=0; i<localStorage.length; i++){
-            var k = localStorage.key(i); //입력키 가져오기 
+            var k = localStorage.key(i); //key와 key에 설정된 (i)번째 요소값 가져오기 
             s += k + localStorage.getItem(k) + "<br>"; //입력키 + 값가져오기 
 
         }

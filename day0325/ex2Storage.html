@@ -26,12 +26,21 @@
         window.onload = function(){
             //로컬스토리지 id,bcolor,tcolor 3개를 저장
             var id,bcolor,tcolor;
-            id = localStorage.getItem("id"); // key값 불러오기
+            id = localStorage.getItem("id");
             bcolor = localStorage.getItem("bcolor");
             tcolor = localStorage.tcolor;
 
             m = document.getElementById("main");
 
+            if(id == undefined || id == null){
+                //alert("id 없음");
+                msg = "먼저 로그인을 하세요";
+            }else{
+                msg = id + "님이 로그인 중..." 
+            }
+            m.innerHTML = msg;
+
+            //처음 들어갔을때 저장된 값 불러오기 
             if(bcolor == undefined || bcolor == null){
                 //alert("bcolor 없음");
                 m.style.backgroundColor = "#fff";
@@ -45,21 +54,13 @@
                 m.style.color = tcolor;
             }
 
-            //로그인 버튼
+            //클릭했을때 이전에 저장된 정보들 불러오기 
             document.getElementById("btnlogin").onclick = function(){
                 var myid = document.getElementById("id").value;
                 localStorage.id = myid; //로컬 스토리지에 아이디 저장 
                 msg = myid + "님이 로그인 중..."
                 m.innerHTML = msg;
             }
-
-            if(id == undefined || id == null){
-                //alert("id 없음");
-                msg = "먼저 로그인을 하세요";
-            }else{
-                msg = id + "님이 로그인 중..." 
-            }
-            m.innerHTML = msg;
 
             //글자색 변경
             document.getElementById("tc").onchange = function(){
