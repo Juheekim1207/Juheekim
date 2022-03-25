@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <style>
+        body * {
+            font-size: 1.2rem;
+            font-family: 'Jua';
+        }  
+        #main{
+            width: 300px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            font-size: 30px;
+            border: 2px solid gray;
+            margin-top: 30px;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            //로컬스토리지 id,bcolor,tcolor 3개를 저장
+            var id,bcolor,tcolor;
+            id = localStorage.getItem("id"); // key값 불러오기
+            bcolor = localStorage.getItem("bcolor");
+            tcolor = localStorage.tcolor;
+
+            m = document.getElementById("main");
+
+            if(bcolor == undefined || bcolor == null){
+                //alert("bcolor 없음");
+                m.style.backgroundColor = "#fff";
+            }else{
+                m.style.backgroundColor = bcolor;
+            }
+            if(tcolor == undefined || tcolor == null){
+                //alert("tcolor 없음");
+                m.style.color = "red";
+            }else{
+                m.style.color = tcolor;
+            }
+
+            //로그인 버튼
+            document.getElementById("btnlogin").onclick = function(){
+                var myid = document.getElementById("id").value;
+                localStorage.id = myid; //로컬 스토리지에 아이디 저장 
+                msg = myid + "님이 로그인 중..."
+                m.innerHTML = msg;
+            }
+
+            if(id == undefined || id == null){
+                //alert("id 없음");
+                msg = "먼저 로그인을 하세요";
+            }else{
+                msg = id + "님이 로그인 중..." 
+            }
+            m.innerHTML = msg;
+
+            //글자색 변경
+            document.getElementById("tc").onchange = function(){
+                m.style.color = this.value;//색상 지정 
+                localStorage.tcolor = this.value; //로컬스토리지 tcolor에 값 저장 
+            }
+
+            //배경색 변경 
+            document.getElementById("bc").onchange = function(){
+                m.style.backgroundColor = this.value;
+                localStorage.bcolor = this.value;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <b>아이디입력:</b>
+    <input type="text" id="id" style="width: 100px;">
+    <button type="button" id="btnlogin">로그인</button>
+    <br>
+    <b>글자색변경:</b><input type="color" id="tc"> <!--input type = color (색상버튼 생성)-->
+    &nbsp;&nbsp;&nbsp;
+    <b>배경색변경:</b><input type="color" id="bc">
+
+    <div id="main">
+        111
+    </div>
+    
+</body>
+</html>
