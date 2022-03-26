@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body * {
+            font-size: 1.2rem;
+            font-family: 'Jua';
+        }  
+        div.c{
+            position: absolute;
+            left: 900px;
+            top: 300px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("div.a>img").css({
+                "width" : "200px",
+                "height" : "240px",
+                "border" : "4px solid orange"
+            });
+
+            $("div.b>img").css({
+                "width" : "120px",
+                "height" : "120px",
+                "border" : "2px solid green",
+                "border-radius" : "100px"
+            });
+
+            //div.a아래의 img중 첫 번째 
+            $("div.a>img:eq(0)").attr("src","../연예인사진/19.jpg");
+            //2번째 (인덱스로는 1)
+            $("div.a>img").eq(1).attr("src","../음식이미지/감자볼.jpg");
+           
+            //div.b아래의 img중 짝수번지(0,2,4,6...)
+            $("div.b>img:even").attr("src","../jquery_image/11.png");
+            //div.b아래의 img중 홀수번지(1,3,5,7...)
+            $("div.b>img:odd").attr("src","../jquery_image/a02.png");
+            
+            //div.b아래의 img중 마지막꺼
+            //$("div.b>img").last().css("box-shadow","5px 5px 5px gray");
+            $("div.a>img:last").css("box-shadow","5px 5px 5px gray");//위와 같다
+
+            //인덱스 1번보다 큰 곳에 적용시키기 (2번부터 나옴) // 작을때는 lt 사용
+            $("div.a>img:gt(1)").attr("src","../div_img/beauty2.jpg");
+
+            //이벤트 : 모든 img에 대한 이벤트
+            $("img").mouseover(function(){
+                //현재 마우스가 있는 img의 src얻기
+                var myimg = $(this).attr("src");
+                //div.c>img에 적용 
+                $("div.c>img").attr("src",myimg);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="a">
+        <img src="">
+        <img src="">
+        <img src="">
+        <img src="">
+    </div>
+    <div class="b">
+        <img src="">
+        <img src="">
+        <img src="">
+        <img src="">
+    </div>
+
+    <div class="c">
+        <img src="">
+    </div>
+</body>
+</html>
