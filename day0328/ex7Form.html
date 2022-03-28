@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body *{ 
+            font-family: 'Jua';
+            font-family: 1.3rem;
+        }  
+
+        table{
+            border-collapse: collapse;
+        }
+
+        td,th{
+            border : 1px solid gray
+        }
+
+        div.msg{
+            position: absolute;
+            left: 400px;
+            top: 50px;
+            width: 500px;
+        }
+    </style>
+     <script>
+        $(function(){
+            $("input:text,input:password").focus(function(){
+                $(this).css("background-color","#ffc");
+            });
+
+            //포커스가 벗어날 때 발생 
+            $("input:text,input:password").blur(function(){ 
+                $(this).css("background-color","#fff");
+            });
+
+            $("#result").click(function(){ //result를 클릭했을때 기능 추가 
+                var s = "[결과 확인]<br><br>";
+                s += "이 름 : " + $("#txtname").val() + "<br>"; //val() : 가져오기 //val(.) : 보내기
+                s += "비 번 : " + $("#txtpass").val() + "<br>";
+                s += "운전면허 : "; 
+                //체크박스의 체크상태를 알아낸다
+                var lic =  $("#cblic").is(":checked"); //체크상태에 따라 true/false 반환
+                if(lic)
+                    s += "있음<br>";
+                else
+                    s += "없음<br>";
+
+                //radio
+                s += "고 향 : " + $("input[name='gohyang']:checked").val() + "<br>"; 
+
+                //checkbox
+                s += "IT언어 : ";
+                var cnt = $("input[name='it']:checked").length; // 체크된 갯수
+                if(cnt == 0)
+                    s += "가능한 it언어 없음!";
+                else
+                    //체크된 항목으로만 반복 
+                    $("input[name='it']:checked").each(function(){
+                        s += "[" + $(this).val() + "]&nbsp;"; 
+                    });
+
+                    s += "등 가능함!";
+
+                //무조건 마지막 줄 
+                $("div.msg").html(s); //result를 클릭했을때 보여지는 화면 
+            });
+        });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th width="100">이 름</th>
+            <td width="200">
+                <input type="text" id="txtname" style="width : 100px;">
+            </td>
+        </tr>
+        <tr>
+            <th width="100">비 번</th> gey
+            <td>
+                <input type="text" id="txtpass" style="width : 100px;">
+            </td>
+        </tr>
+        <tr>
+            <th width="100">운전면허</th>
+            <td>
+                <input type="checkbox" id="cblic">있음 
+            </td>
+        </tr>
+        <tr>
+            <th width="100">고 향</th>
+            <td>
+                <input type="radio" name="gohyang" value="서울" checked>서울&nbsp;
+                <input type="radio" name="gohyang" value="부산">부산<br>
+                <input type="radio" name="gohyang" value="경기도">경기도&nbsp;
+                <input type="radio" name="gohyang" value="제주도">제주도   
+            </td>
+        </tr>
+        <tr>
+            <th width="100">IT언어</th>
+            <td width="200">
+                <input type="checkbox" name="it" value="HTML" checked>HTML&nbsp;
+                <input type="checkbox" name="it" value="JavaScript">JavaScript <br>
+                <input type="checkbox" name="it" value="Java">Java&nbsp;
+                <input type="checkbox" name="it" value="SpringBoot">SpringBoot <br>
+                <input type="checkbox" name="it" value="React">React&nbsp;
+                <input type="checkbox" name="it" value="jQuery">jQuery
+               
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" bgcolor="tomato"
+                style="color: white; cursor: pointer;" id="result">
+                결과 확인 
+            </td>
+        </tr>
+    </table>
+
+    <div class="msg">1111</div>
+</body>
+</html>

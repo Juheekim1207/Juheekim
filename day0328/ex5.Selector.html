@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body *{ 
+            font-family: 'Jua';
+        }  
+    </style>
+</head>
+<body>
+    <h1>제이쿼리</h1>
+    <ul>
+        <li>class</li>
+        <li>id</li>
+    </ul>
+    <h3>이벤트 공부하기</h3>
+    <ul>
+        <li class="select">click</li>
+        <li>bind</li>
+    </ul>
+
+    <script>
+        //전체 태그중에서 h태그(h1~h6)에만 css적용
+        $("*:header").css("border","3px inset gold");
+
+        //li태그 중 class가 select인 경우
+        $("li.select").css({
+            "color" : "green",
+            "font-weight" : "bold"
+        });
+
+        //li태그 중 class가 selete인 경우를 제외하고 적용
+        $("li:not(.select)").css("background-color","#ffddff");
+
+        //li태그의 첫 번째 (전체 li중 첫번째만 해당)
+        $("li:first").css("font-size","2em");
+
+        //부모태그를 기준으로 첫번째 자식에게만 적용 
+        $("li:first-child").css("text-decoration","underline").css("background-color","orange");
+
+        //bind라는 문자열을 포함하고 있는 li태그에만 적용
+        $("li:contains(bind)").css("color:magenta");
+    </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body div{
+            font-size: 1.2rem;
+            font-family: 'Jua';
+        }  
+    </style>
+</head>
+<body>
+    <div>1</div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <h1>111</h1>
+
+    <script>
+        $("div").css({
+            "width" : "70px",
+            "height" : "70px",
+            "border" : "3px inset gray",
+            "cursor" : "pointer",
+            "float" : "left",
+            "margin-left" : "10px",
+            "text-align" : "center",
+            "line-height" : "70px"
+        });
+
+        $("h1").css({
+            "clear" : "both",
+            "padding-top" : "20px",
+        });
+
+        //each문을 이용해서 div의 배경색을 랜덤하게 칠하고 인덱스를 출력 
+        $("div").each(function(index){
+            //index를 div에 출력 
+            $(this).text(index);
+
+            //rgb 색상 만들기 - rgb(r,g,b) : r,g,b는 0~255
+            var r = parseInt(Math.random()*256);
+            var g = parseInt(Math.random()*256);
+            var b = parseInt(Math.random()*256);
+            //색상만들기 
+            var color = "rgb("+r+","+g+","+b+")";
+            //배경색으로 넣기
+            $(this).css("background-color",color);
+
+        });
+        //이벤트 : 해당 div를 클릭하면 배경색을 추출해서 h1에 출력
+            $("div").click(function(){
+                //클릭한 div의 bg값을 넣는다
+                var bg = $(this).css("background-color");
+                $("h1").text(bg);
+            });
+    </script>
+</body>
+</html>

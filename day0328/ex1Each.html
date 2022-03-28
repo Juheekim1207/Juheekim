@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body * {
+            font-size: 1.2rem;
+            font-family: 'Jua';
+        }   
+
+        .bg_0_line{background-color : orange; width: 500px; border: 3px solid green;}
+        .bg_1_line{background-color : pink; width: 500px; border: 3px solid gray;}
+        .bg_2_line{background-color : cyan; width: 500px; border: 3px solid orange;}
+        .bg_3_line{background-color : yellow; width: 500px; border: 3px solid magenta;}
+
+    </style>
+</head>
+<body>
+    <h2>Each 반복문 연습</h2>
+    <ul>
+        <li>Have a Nice Day!!</li>
+        <li>Have a Nice Day!!</li>
+        <li>Have a Nice Day!!</li>
+        <li>Have a Nice Day!!</li>
+    </ul>
+
+    <script>
+        //selector의 갯수만큼 자동 반복
+        $("ul li").each(function(index,item){ //태그에는 for문보다는 each문을 많이 쓴다 
+            //index는 li의 인덱스, item은 해당 요소(li) - 모두 필요없으면 생략가능 
+            console.log($(this).text().index,item);
+            $(this).addClass("bg_" + index + "_line"); //class 추가하기 
+        });
+    </script>
+</body>
+</html>
