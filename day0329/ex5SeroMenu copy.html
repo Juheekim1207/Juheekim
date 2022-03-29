@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body *{ 
+            font-family: 'Jua';
+        }
+
+        div.bitcamp{
+            position: absolute;
+            left: 300px;        
+            width: 250px;
+            height: 300px;
+            border: 2px groove gray;
+            border-radius: 30px;
+            top: 100px;
+        }
+
+        ul li{
+            list-style: none;
+        }
+
+        ul.menu{
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        ul.submenu>li{
+            font-size: 24px;
+            font-family: 'Gamja Flower';
+        }
+
+        ul.submenu>li:hover{
+            background-color: #ccc;
+            color: yellow;
+            width: 120px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="bitcamp">
+        <ul class="menu">
+            <!--첫번째 메뉴-->
+            <li>File
+                <ul class="submenu">
+                    <li>New</li>
+                    <li>Open</li>
+                    <li>Save</li>
+                    <li>Rename</li>
+                </ul>
+            </li>
+            <!--두번째 메뉴-->
+            <li>Edit
+                <ul class="submenu">
+                    <li>Cut</li>
+                    <li>Copy</li>
+                    <li>paste</li>
+                    <li>Delete</li>
+                </ul>
+            </li>
+            <!--세번째 메뉴-->
+            <li>Help
+                <ul class="submenu">
+                    <li>오시는 길</li>
+                    <li>검색</li>
+                    <li>마켓</li>
+                    <li>설명서</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <script> 
+        $(function(){
+            //서브메뉴 숨기기
+            $("ul.submenu").hide();
+
+            //문제 : 이벤트 
+            //메인메뉴명을 클릭시 해당 메뉴의 서브메뉴는 나타나도록 하고 
+            //다른 서브메뉴들은 슴긴다
+            $("ul.menu>li").click(function(){
+                //$(this).siblings().find("ul.submenu").show('slow');
+                //$(this).find("ul.submenu").hide('fast');
+
+                $(this).siblings().find("ul.submenu").slideUp('slow');
+                $(this).find("ul.submenu").slideDown('fast');
+            });
+
+
+
+        });s
+    </script>
+</body>
+</html>

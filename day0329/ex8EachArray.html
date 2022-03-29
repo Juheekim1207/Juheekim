@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+   
+</head>
+<style>
+    div.box{
+        border: 5px solid tomato;
+        margin-top: 200px;
+        width: 300px;
+        height: 130px;
+        padding: 20p 20px;
+        font-family: 'Jua';
+        font-size: 1.3em;
+    }
+</style>
+
+<body>
+    <h3>배열 반복시 사용하는 $.each 문</h3>
+    <script>
+        var data1 = ["red","green","tomato","magenta","gray","orange"];
+        $.each(data1,function(idx,item){
+            var s = "<h2 style='color:" + item + "'>" + item + "</h2>";
+            document.write(s);
+        });    
+    </script>
+    <h3>위의 배열을 for문을 이용해서 같은 모양으로 나오게 하기</h3>
+    <script>
+        for(i=0; i<data1.length; i++){
+            var s = "<h2 style='color:" + data1[i] + "'>" + data1[i] + "</h2>";
+            document.write(s);
+        }
+    </script>
+    <hr>
+    <div id="show"></div>
+
+    <script>
+        var info = [
+        {name:"이영지",hp:"010-2222-3333",addr:"서울시"},
+        {name:"강호동",hp:"010-6767-3333",addr:"부산시"},
+        {name:"유재석",hp:"010-8964-3333",addr:"제주도"}
+        ];
+
+        var s = "";
+        $.each(info,function(idx,data){
+            s += "<div class='box'>";
+            s += "이름 : " + data.name +  "(" + (idx+1) + "번)<br>";
+            s += "핸트폰 : " + data.hp + "<br>";
+            s += "주소 : " + data.addr + "</div>";
+
+        });
+        $("#show").html(s);
+
+    </script>
+
+</body>
+</html>

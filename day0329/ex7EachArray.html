@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+   
+</head>
+<style>
+    .fg{
+        float: left;
+    }
+    .fg img{
+        border: 2px solid orange;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    .fg figcaption{
+        font-weight: bold;
+        font-family: 'Gamja Flower';
+        font-size: 25px;
+    }
+
+    #large{
+        width: 400px;
+        height: 500px;
+        position: absolute;
+        left: 400px;
+        top: 300px;
+        border: 10px inset pink;
+    }
+</style>
+<script>
+    $(function(){
+        //첫번째 이미지명을 얻어서 #large에 넣기
+        $("#large").attr("src",imginfo[0].name);
+        
+        //작은 이미지를 클릭시 해당 이미지명을 얻어서 #large에 넣기 
+        $(".fg img").click(function(){
+            $("#large").attr("src",$(this).attr("src"));
+        });
+    });
+</script>
+<body>
+   <div id="show"></div>
+   <img src="" id="large">
+
+   <script>
+       var imginfo = [
+        {name:"../연예인사진/12.jpg",caption:"박보영",width:"150px"},
+        {name:"../연예인사진/13.jpg",caption:"박신혜",width:"120px"},
+        {name:"../음식이미지/감자볼.jpg",caption:"맛있는 갑자볼",width:"200px"},
+        {name:"../음식이미지/초밥.jpg",caption:"맛있는 초밥",width:"170px"},
+        {name:"../jquery_image/m09.jpg",caption:"탁트인바다",width:"190px"}
+       ];
+
+       var s = "";
+       $.each(imginfo,function(idx,data){
+            s += "<figure class = 'fg'>";
+            s += "<img src ='" + data.name + "'width='" + data.width + ">";
+            s += "<figcaption>" + data.caption + "</figcaption>";
+            s += "</figure>";
+       });
+       $("#show").html(s);
+   </script>
+</body>
+</html>

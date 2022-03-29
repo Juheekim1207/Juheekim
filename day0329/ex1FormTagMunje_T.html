@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <style>
+        body *{ 
+            font-family: 'Jua';
+            font-family: 1.3rem;
+        }  
+
+        table{
+            border-collapse: collapse;
+        }
+
+        td,th{
+            border : 1px solid gray
+        }
+
+        div.msg{
+            position: absolute;
+            left: 100px;
+            top: 300px;
+            width: 500px;
+            font-size: 35px;
+        }
+
+        div.doll{
+            position: absolute;
+            left: 100px;
+            top: 400px;
+            width: 500px;
+        }
+    </style>
+
+     <script>
+        $(function(){
+           //버튼 이벤트 
+           $("#result").click(function(){
+               var tcolor = $("input[name='tcolor']:checked").val();
+               $("div.msg").css({
+                    "color" : tcolor,
+                    "font-family" : $("#tfont").val(),
+                    "font-weight" : $("#cbbold").is(":checked")?"bold":"normal",
+                    "font-style" : $("#cbitalic").is(":checked")?"italic":"normal"
+                });
+
+                //인형 
+                var len = $("input[name='mydoll']:checked").length;//체크된 갯수
+                if(len == 0)
+                    $("div.doll").html("");
+                else{
+                    var s = " ";
+                    $("input[name='mydoll']:checked").each(function(){
+                        s += "<img src='" + $(this).val() + "'>";
+                    });
+                    $("div.doll").html(s);
+                }
+           });
+        });
+    </script>
+</head>
+<body>
+    <table>
+        <tr>
+            <th width="100">글자색</th>
+            <td width="400">
+                <input type="radio" name="tcolor" value="red">빨강&nbsp;
+                <input type="radio" name="tcolor" value="blue" checked>파랑&nbsp;
+                <input type="radio" name="tcolor" value="magenta">핫핑크&nbsp;
+                <input type="radio" name="tcolor" value="green">초록
+            </td>
+        </tr>
+        <tr>
+            <th width="100">글 꼴</th> 
+            <td>
+                <select id="tfont">
+                    <option value="Jua" selected>Jua</option>
+                    <option value="Gamja Flower">Gamja Flower</option>
+                    <option value="Lobster">Lobster</option>
+                    <option value="Nanum Brush Script">Nanum</option>
+            </td>
+        </tr>
+        <tr>
+            <th width="100">스타일</th>
+            <td>
+                <input type="checkbox" id="cbbold">굵게&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" id="cbitalic">이태릭
+            </td>
+        </tr>
+        <tr>
+            <th width="100">이미지</th>
+            <td width="200">
+                <input type="checkbox" name="mydoll" value="../jquery_image/03.png">인형1&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="mydoll" value="../jquery_image/08.png">인형2&nbsp;&nbsp;&nbsp;
+                <input type="checkbox" name="mydoll" value="../jquery_image/11.png">인형3&nbsp;&nbsp;&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" bgcolor="tomato"
+                style="color: white; cursor: pointer;" id="result">
+                결과 확인 
+            </td>
+        </tr>
+    </table>
+
+    <div class="msg">오늘은 힘든 월요일입니다</div>
+    <div class="doll"></div>
+</body>
+</html>
