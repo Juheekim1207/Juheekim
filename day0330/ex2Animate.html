@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+   
+    <style>
+        div.box1{
+            position: relative;
+            width: 60px;
+            height: 60px;
+            background-color: tomato;
+            margin-top: 10px;
+        }
+
+        img{
+            position: absolute;
+            margin-top: 200px;
+            margin-left: 180px;
+        }
+    </style>
+    <script>
+        $(function(){
+            $("div.box1").each(function(index){
+                $(this).delay(index*500).animate({"left":"+=300px"},"slow");
+            });
+
+            $("img").slideUp(2000).delay(1000).slideDown(2000); //슬라이드 업으로 사라졌다가 1초 있다가 슬라이드 다운으로 나옴 
+        });
+    </script>
+</head>
+<body>
+    <img src="../jquery_image/01.png">
+
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+    <div class="box1"></div>
+
+</body>
+</html>

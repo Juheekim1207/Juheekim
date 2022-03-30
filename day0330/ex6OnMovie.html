@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+   
+    <style>
+        button{
+            width: 150px;
+            height: 40px;
+            border-radius: 20px;
+            font-size: 1.5em;
+            font-family: 'Gamja Flower';
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button.a{
+            background-color: #2e8b57;
+            color: #fff;
+        }
+
+        button.b{
+            background-color: #db7093;
+            color: #000;
+        }
+
+        div{
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            font-size: 20px;
+            font-family: 'Jua';
+            text-align: center;
+        }
+
+        #one{
+            left: 50px; top: 100px;
+        }
+
+        #two{
+            left: 400px; top: 100px;
+        }
+
+        #three{
+            left: 750px; top: 100px;
+        }
+
+        #four{
+            font-size: 20px;
+            left: 1000px;
+            top: 120px;
+        }
+
+        #result{
+            left: 80px;
+            top: 400px;
+            font-size: 30px;
+            width: 1000px;
+            text-align: center;
+            border: 3px solid gold;
+            border-radius: 30px;
+            padding-top: 20px;
+        }
+
+        #three h3:hover{
+            cursor: pointer;
+            background-color: orange;
+            color: blue;
+            font-weight: bold;
+        }
+
+        #inwon{
+            font-size: 20px;
+            width: 60px;
+            text-align: center;
+        }
+
+
+    </style>
+    <script>
+        var theater="", movie="", time="",inwon="";
+        $(function(){
+            var b = "<button type='button' class='a'>영화예매</button>";
+            $("#one").append(b);
+
+            //영화예매 이벤트
+            $("button.a").click(function(){
+                var b = "<button type='button' class='b' id='btn1''>극장선택</button>";
+                b += "<button type='button' class='b' id='btn2'>영화선택</button>";
+                $("#two").html(b);
+            });
+
+            //극장선택 이벤트
+            $(document).on("click","#btn1",function(){
+                var s = "<h3 class='theater'>CGV 강남점</h3>";
+                s += "<h3 class='theater'>MEGABOX 강남점</h3>";
+                s += "<h3 class='theater'>CGV 교보점</h3>";
+                $("#three").html(s);
+            });
+
+            //영화선택 이벤트
+            $(document).on("click","#btn2",function(){
+                var s = "<h3 class='movie'>모가디슈</h3>";
+                s += "<h3 class='movie'>씽크홀</h3>";
+                s += "<h3 class='movie'>나홀로 집에</h3>";
+                $("#three").html(s);
+            });
+
+            //h3이벤트 (극장,영화 선택시 출력)
+            $(document).on("click","#three h3", function(){
+                //클릭한 h3에서 class명 추출 
+                var c = $(this).attr("class");
+                if(c == 'theater')
+                    theater = "극장명 : " + $(this).text();
+                else{
+                    movie = "영화제목 : " + $(this).text();
+
+                    //시간 추가
+                    var times = ["09:00","12:00","15:00","19:00","23:30"];
+                    var tag = "";
+                    //배열일 때 반복문 $.each
+                    $.each(times,function(idx,data){
+                        tag += "<input type='radio' name='time' value='" 
+                            + data + "'>" + data + "<br>";
+                    });
+
+                    tag += "<br><br>";
+                    tag += "<input type='number' min=1 max=5 value=0 id='inwon'>";
+
+                    $("#four").html(tag);
+                }
+                
+                //출력
+                $("#result").html(theater + "<br>" + movie + "<br>" + time + "<br>" + inwon);
+            });
+
+            //시간 선택시 이벤트
+            $(document).on("click","input[name='time']",function(){
+                time = "상영시간 : " + $(this).val();
+                //출력
+                $("#result").html(theater + "<br>" + movie + "<br>" + time + "<br>" + inwon);
+            });
+
+            //인원변경시
+            $(document).on("change","#inwon",function(){
+                inwon = "인원 : " + $(this).val() +"명";
+                $("#result").html(theater + "<br>" + movie + "<br>" + time + "<br>" + inwon);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="three"></div>
+    <div id="four"></div>
+    <div id="result"></div>
+
+
+</body>
+</html>

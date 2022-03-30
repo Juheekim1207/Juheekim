@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+   
+</head>
+<style>
+
+    body * {
+        font-family: 'Gamja Flower';
+    }
+
+    .ticket{
+        border-radius: 10px;
+        width: 780px;
+        height: 380px;
+        padding-left : 20px;
+        padding-top: 20px;
+    }
+
+    #box1{
+        width: 200px;
+        height: 100px;
+        top: 30px;
+        text-align: center;
+    }
+
+    #box2{
+        width: 200px;
+        height: 100px;
+        position: absolute;
+        left: 250px;
+        top: 30px;
+        text-align: center;
+        
+    }
+
+    #box3{
+        width: 200px;
+        height: 100px;
+        position: absolute;
+        left: 470px;
+        top: 20px;
+        font-family: 'Jua';
+        font-size: 15px;
+        text-align: center;
+    }
+
+    #box4{
+        width: 200px;
+        position: absolute;
+        left: 650px;
+        top: 40px;
+        font-family: 'Jua';
+        font-size: 15px;
+        text-align: center;
+    }
+
+    .btn1{
+       font-size: 20px;
+       width: 200px;
+       border-radius: 10px;
+       cursor: pointer;
+       border: 1px solid rgb(190, 96, 190) ;
+       background-color: rgb(190, 96, 190);
+       color: white;
+       font-size: 25px;
+    }
+
+    .btn2{
+        font-size: 20px;
+        width: 200px;
+        border: 2px solid rgb(190, 96, 190) ;
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: white;
+        color: rgb(190, 96, 190);
+        font-size: 25px;
+    }
+
+    .btn2:hover{
+        background-color:  rgb(190, 96, 190);
+        color: white;
+    }
+
+    .btn3{
+        font-size: 20px;
+        width: 200px;
+        border: 2px solid rgb(190, 96, 190);
+        border-radius: 10px;
+        cursor: pointer;
+        background-color: white;
+        color: rgb(190, 96, 190);
+        font-size: 25px;
+    }
+
+    .btn3:hover{
+        background-color:  rgb(190, 96, 190);
+        color: white;
+    }
+
+    h3{
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    h3:hover{
+        background-color: rgb(190, 96, 190);
+        cursor: pointer;
+        font-size: 20px;
+        color: white;
+    }
+
+    #msg{
+        border: 1px solid gray;
+        border-radius: 10px;
+        width: 750px;
+        height: 115px;
+        margin-top: 70px;
+        padding-top: 5px;
+        text-align: center;
+        font-size: 22px;
+        color: black;
+    }
+
+    #inwon{
+        width: 50px;
+        margin-top: 10px;
+        margin-left: 5px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+</style>
+<body>
+    <div class="ticket">
+        <div id="box1">
+            <button type="button" class="btn1">영화 예매</button>
+        </div>
+        <div id="box2"></div>
+        <div id="box3"></div>
+        <div id="box4"></div>
+        <div id="msg"></div>
+    </div>
+    <script>
+        var theater = "", movie = "", time = "", inwon = "";
+         $(".btn1").click(function(){
+            var s = "<button type='button' class='btn2'>극장 선택</button>&nbsp;<br>";
+            s += "<button type='button' class='btn3'>영화 선택</button>"
+            $("#box2").html(s);
+         });
+
+         $(document).on("click",".btn2",function(){
+            var s = "<h3 class='theater'>CGV 강남점</h3>";
+            s += "<h3 class='theater'>MEGABOX 강남점</h3>";
+            s += "<h3 class='theater'>CGV 교보타워점</h3>";
+            $("#box3").html(s);
+         });
+
+         $(document).on("click",".btn3",function(){
+            var s = "<h3 class='movie'>바람과 함께 사라지다</h3>";
+            s += "<h3 class='movie'>엑시트</h3>";
+            s += "<h3 class='movie'>괴물</h3>";
+            $("#box3").html(s);
+         });
+
+         $(document).on("click","#box3 h3",function(){
+            var c = $(this).attr("class");
+            if(c == 'theater')
+                theater = "영화관 : " + $(this).text(); 
+            else{
+                movie = "영화제목 : " + $(this).text(); 
+                
+            var times = ["09:00","12:00","15:00","19:00","23:30"];
+            var tag = "";
+            $.each(times,function(idx,data){
+                tag += "<input type='radio' name='time' value='" + data 
+                    + "'>" + data + "<br>";       
+            });
+
+            tag += "<input type='number' id='inwon' min=1 max=5 value=0>";
+
+            $("#box4").html(tag);
+            }
+
+            $("#msg").html(theater + "<br>" + movie + "<br>" + time + "<br>" + inwon);
+         });
+
+        $(document).on("click","input[name='time']",function(){
+            time = "상영시간 : " + $(this).val();
+            $("#msg").html(theater + "<br>" + movie + "<br>" + time + "<br>" + inwon);       
+        });
+
+        $(document).on("change","#inwon",function(){
+            inwon = "인원 : " + $(this).val() + "명";;
+            $("#msg").html(theater + "<br>" + movie + "<br>" + time + "<br>" + inwon);       
+        });       
+    </script>
+</body>
+</html>
