@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        body{
+            font-family: 'Jua';
+        }
+    </style>
+</head>
+<body>
+    <h2 class="alert alert-info">Table</h2>
+    <table class="table" style="width: 300px;">
+        <tr bgcolor="orange">
+            <th>이름</th><th>핸드폰</th><th>주소</th>
+        </tr>
+        <tr>
+            <td>강호동</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+        <tr>
+            <td>유재석</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+        <tr>
+            <td>이영자</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+    </table>
+    <h2 class="alert alert-info">Table striped</h2>
+    <table class="table table-striped" style="width: 300px;">
+        <tr bgcolor="orange">
+            <th>이름</th><th>핸드폰</th><th>주소</th>
+        </tr>
+        <tr>
+            <td>강호동</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+        <tr>
+            <td>유재석</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+        <tr>
+            <td>이영자</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+    </table>
+    <h2 class="alert alert-info">Table bordered</h2>
+    <table class="table table-bordered" style="width: 300px;">
+        <tr bgcolor="orange">
+            <th>이름</th><th>핸드폰</th><th>주소</th>
+        </tr>
+        <tr>
+            <td>강호동</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+        <tr>
+            <td>유재석</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+        <tr>
+            <td>이영자</td><td>010-2222-3333</td><td>서울시</td>
+        </tr>
+    </table>
+    <ul class="pagination" style="margin-left: 50px;">
+        <li><a href="#">1</a></li>
+        <li class="active"><a href="#">2</a></li> <!--페이지 고정 : active-->
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+
+    <script>
+        //페이지 클릭했을때 active하게 설정 
+        $("ul li").click(function(){
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active")
+        });
+    </script>
+</body>
+</html>
