@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+</head>
+
+
+<body>
+    
+    <span class="glyphicon glyphicon-heart-empty heart"
+    style="cursor:pointer"> <!--크기는 font-size로 고친다-->
+     </span>
+     
+
+<script>
+    //카메라를 클릭시 파일이 열리도록 해보자
+    /*
+    $("span.heart").click(function(){
+        $(this).hide();
+        
+        var s = "<span class='glyphicon glyphicon-heart move' style='cursor:pointer; color='red'>";
+            s += "</span>"
+
+        $("span.move").animate("font-size","40px");
+
+
+    $("#file").html(s); //이벤트 강제발생 
+});
+*/
+
+    $("span.heart").click(function(){
+            
+        $(this).animate({"font-size":"100px"},"slow",function(){
+            $(this).animate({"font-size":"40px"},"slow");
+
+            //60px까지 커졌을때 변경  
+            $(this).css("color","red"); 
+            $(this).attr("class","glyphicon glyphicon-heart");
+            $(this).fadeOut('slow');
+        });
+    
+    });
+</script>
+
+</body>
+</html>
