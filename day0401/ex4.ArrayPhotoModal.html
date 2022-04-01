@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        body{
+            font-family: 'Jua';
+        }
+
+        div.photos{
+            margin-top: 100px;
+            margin-left: 100px;
+        }
+
+        div.photos figure{
+           float: left;
+           margin-right: 5px;
+        }
+
+        div.photos figure img{
+            width: 130px;
+            height: 140px;
+            cursor: pointer;
+        }
+
+        div.photos figure figcaption{
+            margin-left:50px ;
+            font-size: 28px;
+        }
+
+    </style>
+    <script>
+        $(function(){
+            arr = new Array();
+            //object로 배열에 넣는 방법
+            var ob1 = new Object();
+            ob1.imgname="../연예인사진/2.jpg";
+            ob1.title="김우빈";
+            arr.push(ob1);
+
+            var ob2 = new Object();
+            ob2.imgname="../연예인사진/5.jpg";
+            ob2.title="최지우";
+            arr.push(ob2);
+
+            var ob3 = new Object();
+            ob3.imgname="../연예인사진/6.jpg";
+            ob3.title="한예슬";
+            arr.push(ob3);
+
+            var ob4 = new Object();
+            ob4.imgname="../연예인사진/9.jpg";
+            ob4.title="강동원";
+            arr.push(ob4);
+
+            var ob5 = new Object();
+            ob5.imgname="../연예인사진/11.jpg";
+            ob5.title="고준희";
+            arr.push(ob5);
+
+            var ob6 = new Object();
+            ob6.imgname="../연예인사진/13.jpg";
+            ob6.title="박신혜";
+            arr.push(ob6);
+
+            //출력
+            var s = "총 : " + arr.length + "개의 사진이 저장되었습니다<br><br>"
+
+            //배열갯수만큼 반복
+            $.each(arr,function(idx,item){
+                s += "<figure>";
+                s += "<img src='" + item.imgname + "'class='img-circle photo'>"; //배열값의 imgname
+                s += "<figcaption>" + item.title + "</figcaption>"; //배열값의 title
+                s += "</figure>";
+
+                if(idx == 2){ //0,1,2 -> 3개 출력후 다음줄로 
+                    s += "<br style='clear:both'><br>";
+                }
+                });
+                $("div.photos").html(s);
+
+                //사진 클릭시 이벤트
+                $("img.photo").click(function(){
+                    //사진 src얻기
+                    var imgsrc = $(this).attr("src");
+                    //타이틀 얻기
+                    var title = $(this).next().text();
+                    //사진 넣기
+                    $("div.modal-body img").attr("src",imgsrc);
+                    //타이틀 넣기
+                    $("h1.modal-title").text(title);
+                    //모달로 다이얼로그 띄우기 
+                    $("#myModal").modal();
+                });
+        });
+    </script>
+</head>
+<body>
+    <div class="photos">111</div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm"> <!--사이즈 : modal-sm modal-md modal-lg-->
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+            <p>아름다운 <b></b> 님!!!</p>
+            <img src="" width="100%" class="img-rounded">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        
+        </div>
+    </div> 
+</body>
+</html>

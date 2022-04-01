@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    
+    <style>
+        body{
+            font-family: 'Jua';
+        }
+
+        #selphoto{
+            position: relative;
+            left: 200px;
+            top: 100px;
+        }
+
+        figure{
+            position: absolute;
+            left: 400px;
+            top: 100px;
+        }
+
+        figure figcaption{
+            margin-left: 100px;
+            font-size: 2em;
+        }
+
+    </style>
+
+    <script>
+        $(function(){
+            var value = $("#selphoto").val();
+            $("#myphoto").attr("src",value);
+            
+            var text = $("#selphoto option:selected").text();
+            $("figcaption").text(text);
+
+            $("#selphoto").change(function(){
+                $("#myphoto").attr("src",$(this).val());
+                $("figcaption").text($("#selphoto option:selected").text());
+            });
+
+            //사진을 클릭시 모달 다이얼로그 띄우기
+            $("#myphoto").click(function(){
+                var name = $(this).next().text(); //클릭한 이미지의 다음 태그에 있는 텍스트 (figcaption)
+                $("h4.modal-title").text(name);
+                $("div.modal-body p b").text(name);
+                $("div.modal-body img").attr("src",$(this).attr("src"));
+                $("#myModal").modal();
+            }); 
+        });
+    </script>
+</head>
+<body>
+
+    <select id="selphoto" class="form-control" style="width:140px;">
+        <option value="../연예인사진/6.jpg">한예슬</option>
+        <option value="../연예인사진/12.jpg">박보영</option>
+        <option value="../연예인사진/19.jpg">수지</option>
+        <option value="../연예인사진/17.jpg">신민아</option>
+    </select>
+
+    <figure>
+        <img src="" id="myphoto" width="250" class="img-thumbnail"
+        title="더 크게 보려면 클릭하세요" style="cursor: pointer;">
+        <figcaption>11</figcaption>
+    </figure>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-xs"> <!--사이즈 : modal-sm modal-md modal-lg-->
+        
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+            <p>아름다운 <b></b> 님!!!</p>
+            <img src="" width="100%" class="img-rounded">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+        
+        </div>
+    </div> 
+    
+</body>
+</html>
