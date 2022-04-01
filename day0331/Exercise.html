@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+   
+    <style>
+        body,h1,ul{
+            margin: 0;
+            padding: 0;
+        }
+
+        li{list-style: none;}
+
+        body{background-color: #fff;}
+
+        div.wall{
+            width: 800px;
+            height: 600px;
+            margin: 50px auto; /*가운데 정렬*/
+            background-color: #999;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            border: 5px solid #333;
+            overflow: hidden; /*옆 스크롤자를 안보이게 처리 : 기본값은 auto*/
+        }
+
+        h1.title{
+            font-family: 'Nanum Brush Script';
+            font-size: 37px;
+            position: absolute;
+            right: 50px;
+            top: 60px;
+            width: 130px;
+        }
+
+        div.wall ul.list{
+            background-color: rgba(0,0,0,0.9);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            border-top: 1px solid #666;
+        }
+
+        div.wall ul.list li{
+            float: left;
+            margin-left: 10px;
+            margin-top: 10px;
+            width: 70px;
+            height: 70px;
+            border: 5px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        div.wall ul.list li img{
+            width: 100%;
+
+        }
+
+        /*제이쿼리에서 사용할 class*/
+        div.wall ul.list li.active{
+            border-color: blueviolet; /*클릭했을때 나오는 테두리 색*/
+        }
+    </style>
+    <script>
+        $(function(){
+                //벽지 이미지 클릭시 이벤트 
+                $("")
+            
+                //부모태그인 li에 class active 추가
+              
+
+                //부모의 다른 형제들에 있는 class active를 제거 
+          
+
+                //클릭한 이미지에서 title을 추출
+           
+
+                //위에서 얻은 title을 h1.title에 넣는다
+          
+
+                //클릭한 이미지의 src를 얻는다(변수명 : mywall)
+         
+
+                //mywall을 div.wall에 배경이미지를 넣는다(background-image로 넣기[url])
+               //url에 소스 추가하는 법
+               
+
+         
+        });
+    </script>
+</head>
+<body>
+    <div class="wall">
+        <h1 class="title">Select Page</h1>
+        <img src="../jquery_image/cover2.png">
+        <ul class="list">
+            <li><img src="../jquery_image/b01.png" title="Pear"></li>
+            <li><img src="../jquery_image/b02.png" title="Checker"></li>
+            <li><img src="../jquery_image/b03.png" title="Bamboo"></li>
+            <li><img src="../jquery_image/b04.png" title="School"></li>
+            <li><img src="../jquery_image/b05.png" title="Leap"></li>
+            <li><img src="../jquery_image/b06.png" title="Forest"></li>
+        </ul>
+    </div>
+</body>
+</html>

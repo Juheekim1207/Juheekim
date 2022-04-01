@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+  <style>
+     div.tooltip{
+        line-height: 1.5;
+        color: white;
+        width: 200px;
+        background-color: #f90;
+        border: 2px solid white;
+        padding: 1em;
+        font-size: 1px;
+        border-radius: 30px;
+        font-family: 'Jua';
+        
+    }
+
+    b.view{cursor: pointer;}
+  </style>
+  <script>
+    $(function(){
+      //튤팁에 css 추가
+      $("div.tooltip").css({
+          "opacity":"0.9",
+          "position":"absolute",
+          "display":"none"
+      });
+
+      $("a").bind({
+        mouseover:function(){
+          $("div.tooltip").fadeIn();
+        },
+        mouseout:function(){
+          $("div.tooltip").fadeOut();
+        },
+        mousemove:function(e){
+          $("div.tooltip").css({
+            top : e.pageX + 10 + "px",
+            left : e.pageY + 10 + "px"
+          });
+        }
+      });
+
+    $("b.view").bind({
+        mouseover:function(){
+          $("div.tooltip").fadeIn();
+        },
+        mouseout:function(){
+          $("div.tooltip").fadeOut();
+        },
+        mousemove:function(e){
+          $("div.tooltip").css({
+            top : e.pageY + 10 + "px",
+            left : e.pageX + 10 + "px",
+            fontSize : "25px"
+          });
+
+          //b.view의 text를 얻어서 튤팁에 넣기
+          $("div.tooltip").text($(this).text());
+        }
+      });
+    });
+  
+  </script>
+
+</head>
+<body>
+  <h3>Tooltip 링크 부분에 마우스를 올려보새요</h3>
+  <a style="font-size: 20px; cursor: pointer;">Tooltip</a>
+  <pre>
+    최 간사는 "현 정부에서 다주택자 중과세율 한시 배제 방침을 4월 중 조속히 발표하고, 
+    발표일 <b class="view">다음 날 양도분</b>부터 적용되도록 소득세법 시행령을 개정해줄 것을 요청한다"고 말했다.
+    
+    그는 "현 정부에서 조치가 이뤄지지 않을 경우 새 정부 출범 즉시 시행령을 개정해 
+    정부 출범일인 5월 10일 다음날 양도분부터 1년간 배제되도록 하겠다"고 밝혔다.
+    인수위가  <b class="view">다주택자 중과세율 한시 배제 방침</b>을 현 정부에 요청한 것은 이 규정이 국회의 동의 없이 정부가 독자적으로 결정할 수 있는 대통령령(시행령) 사항이기 때문이다.
+  </pre>
+
+  <div class="tooltip">
+      Java<br>
+      HTML<br>
+      jQuery<br>
+      Oracle<br>
+      SpringBoot
+  </div>
+</body>
+</html>
