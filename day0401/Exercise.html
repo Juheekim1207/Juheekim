@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    body{
+        font-family: 'Jua';
+    }
+
+    .buttons{
+        position: relative;
+        left: 200px;
+        top: 120px;
+    }
+
+    .btn{
+        font-size: 1.5rem;
+        width: 130px;
+    }
+
+    .inputform{
+        position: absolute;
+        left: 200px;
+        top: 180px;
+    }
+
+    .inputform th{
+        background-color: #fcc;
+        text-align: center;
+        font-size: 14px;
+        width: 100px;
+    }
+
+    #savebtn{
+        text-align: center;
+    }
+
+    .listform{
+        width: 400px;
+        position: absolute;
+        left: 200px;
+        top: 180px;
+    }
+
+    h1.msg{
+        font-size: 17px;
+        text-align: center;
+    }
+
+</style>
+<script>
+    $(function(){
+        var arr = new Array();
+
+        //listform 숨기기 (초기화면)
+        $("div.listform").hide();
+
+        //저장하기 버튼 클릭시 이름, 나이, 주소를 객체(Object)로 배열에 저장 
+        $("#savebtn").click(function(){
+            var ob = new Object();
+            ob.name = $("#txtname").val();
+            ob.age = $("#txtage").val();
+            ob.addr = $("#txtaddr").val();
+            arr.push(ob);
+            console.log(ob);
+
+            //저장 메세지 출력 
+            var s = "총 " + arr.length + "명의 데이터가 저장되어 있습니다" 
+
+            //value값 지우기 (입력칸 초기화)
+            $("#txtname").val(""); 
+            $("#txtage").val("");
+            $("#txtaddr").val("");
+            $("#txtname").focus();
+            $("h1.msg").html(s);
+        });
+        
+        //'데이터 목록' 클릭시 
+        $("#listbtn").click(function(){
+            //listform으로 전환
+            $("div.listform").show();
+            $("div.inputform").hide();
+        
+            //이름, 나이, 주소 데이터 목록에 호출 
+            var s = "<table class='table table-striped'>";
+                s += "<caption>데이터 목록</caption>";
+                s += "<tr><th>번호</th><th>이름</th><th>나이</th><th>주소</th><th>편집</th>";
+                s += "</tr>";
+
+                if(arr.length == 0){ //데이터를 입력하지 않은 경우 
+                    s += "<tr><td colspan='4' style='text-align:center;'>저장된 데이터 없음</td></tr>";
+                }else{
+                    //데이터 배열 돌리고 호출하기
+                    $.each(arr,function(index,item){
+                        s += "<tr><td>" + (index+1) + "</td>";
+                        s += "<td>" + item.name + "</td>";
+                        s += "<td>" + item.age + "</td>";
+                        s += "<td>" + item.addr + "</td>";
+                        s += "<td><span class='glyphicon glyphicon-edit'></span>&nbsp;";
+                        s += "<span class='glyphicon glyphicon-trash'></span></td>";
+                    });
+                }
+                s += "</tr></table>";
+                
+                //화면 출력
+                $("div.listform").html(s);
+        });
+
+        //'데이터 추가폼' 클릭시 다시 inputform으로 전환
+        $("#inputbtn").click(function(){
+            $("div.listform").hide();
+            $("div.inputform").show();
+        });
+    });
+</script>
+<body>
+    <div class="buttons">
+        <button type="button" id="inputbtn" class="btn btn-info">
+            <span class="glyphicon glyphicon-plus-sign"></span> 데이터 추가폼</button>&nbsp;
+        <button type="button" id="listbtn" class="btn btn-warning">
+            <span class="glyphicon glyphicon-list"></span> 데이터 목록</button>
+    </div>
+    <div class="inputform">
+        <table class="table table-bordered">입력폼
+            <caption>데이터 추가</caption>
+            <tr>
+                <th>이 름</th>
+                <td>
+                    <input type="text" class="form-control input-sm" id="txtname" placeholder="이름을 입력하세요" autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <th>나 이</th>
+                <td>
+                    <input type="text" class="form-control input-sm" id="txtage" placeholder="나이를 입력하세요" autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <th>주 소</th>
+                <td>
+                    <input type="text" class="form-control input-sm" id="txtaddr" placeholder="주소를 입력하세요" autocomplete="off">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" id="savebtn">
+                   
+                   <button type="button" class="btn btn-default" style="font-size: 13px;">
+                   저장하기&nbsp;<span class="glyphicon glyphicon-floppy-saved"></span></button>
+                </td>
+            </tr>
+        </table>
+        <h1 class="msg"></h1>
+    </div> 
+    <div class="listform"></div>
+  
+</body>
+</html>
