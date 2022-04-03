@@ -1,0 +1,280 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&family=Lobster&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+<title>Document</title>
+
+
+<Style>
+
+body{margin: 0;padding: 0;}
+
+li{list-style: none;}
+
+body,html{
+
+height: 100%;
+
+overflow: hidden;
+
+}
+
+
+body{
+
+background: #fff1c6 url('../jquery_image/bg.png') center center;
+
+background-size: cover;
+
+}
+
+
+.sunban-wrapper{
+
+width: 780px;
+
+margin: 50px auto; /*가운데로*/
+
+}
+
+
+#control-wrapper{
+
+width: 300px; height: 900px;
+
+position: fixed; left: 0; bottom: 0;
+
+}
+
+
+.sunban{
+
+height: 150px;
+
+margin-bottom: 50px;
+
+width: 780px;
+
+background: url('../jquery_image/sunban.png')no-repeat center bottom;
+
+}
+
+
+.sunban li{
+
+float: left;
+
+width: 128px;
+
+height: 128px;
+
+}
+
+
+.money li{
+
+cursor: pointer;
+
+}
+
+
+.gun{
+
+width: 300px;
+
+height: 250px;
+
+background: url('../jquery_image/gun.png') no-repeat;
+
+cursor: pointer;
+
+text-indent: -9999px; /*총이라는 글자 안보이게 위치시킴*/
+
+}
+
+
+.gun:active{
+
+background-position: bottom; /*클릭했을때 아래이미지 보이게*/
+
+}
+
+
+#msg{
+
+position: absolute;
+
+left: 550px;
+
+top: 500px;
+
+width: 400px;
+
+height: 50px;
+
+font-size: 25px;
+
+font-family: 'Jua';
+
+border: 10px groove orange;
+
+text-align: center;
+
+line-height: 50px;
+
+
+}
+
+</Style>
+
+<Script>
+
+$(function(){
+
+var n = 0;//맞춘 인형 갯수
+
+
+//총을 클릭하면 0~11사이의 랜덤값을 발생
+
+
+//해당 인형을 안보이게 처리
+
+//메세지창 : 1번째 인형을 맞췄네요
+
+
+//1번이 이미 사라지고 없는 경우
+
+//"1번 인형은 이미 처리되었습니다"
+
+//12개의 인형이 모두 사라지면 "You Win!! Game Over!!"
+
+
+$(".gun").click(function(){
+
+var idx = parseInt(Math.random()*12); //0~11
+
+//var idx = Math.ceil(Math.random()*12); //무조건 올림 : ceil, 무조건 내림 : floor, 반올림 : round
+
+if($(".sunban li img").eq(idx).is(":hidden")){
+
+$("#msg").html((idx+1) + "번 인형은 이미 처리되었습니다");
+
+}else{
+
+n++;//새로운 인형을 맞출때마다 1증가
+
+$("#msg").html((idx+1) + "번 인형을 맞췄네요!!");
+
+$(".sunban li img").eq(idx).hide();
+
+}
+
+
+if(n >= 12){
+
+$("#msg").html("Game Over!! You Win!!");
+
+}
+
+});
+
+
+//money를 클릭하면 모두 초기화 (사라진 인형 재배치, 메세지창 지우기등) 후 해당 지폐는 안보이게
+
+$(".money img").click(function(){
+
+$(this).hide(); //hide는 자리를 차지하지 않음 = 삭제하면 위로 올라감
+
+//$(this).css("opacity","0"); //삭제하면 그자리만 사라짐
+
+n = 0;
+
+$(".sunban li img").show();
+
+$("#msg").html("");
+
+
+});
+
+});
+
+</Script>
+
+</head>
+
+<body>
+
+<div id="control-wrapper">
+
+<div class="gun">총</div>
+
+<ul class="money">
+
+<li><img src="../jquery_image/money.png"></li>
+
+<li><img src="../jquery_image/money.png"></li>
+
+<li><img src="../jquery_image/money.png"></li>
+
+</ul>
+
+</div>
+
+
+<div class="sunban-wrapper">
+
+<ul class="sunban">
+
+<li><img src="../jquery_image/01.png"></li>
+
+<li><img src="../jquery_image/02.png"></li>
+
+<li><img src="../jquery_image/03.png"></li>
+
+<li><img src="../jquery_image/04.png"></li>
+
+<li><img src="../jquery_image/05.png"></li>
+
+<li><img src="../jquery_image/06.png"></li>
+
+</ul>
+
+
+<ul class="sunban">
+
+<li><img src="../jquery_image/07.png"></li>
+
+<li><img src="../jquery_image/08.png"></li>
+
+<li><img src="../jquery_image/09.png"></li>
+
+<li><img src="../jquery_image/10.png"></li>
+
+<li><img src="../jquery_image/11.png"></li>
+
+<li><img src="../jquery_image/12.png"></li>
+
+</ul>
+
+</div>
+
+
+<div id="msg"></div>
+
+
+</body>
+
+</html>
